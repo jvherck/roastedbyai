@@ -73,15 +73,15 @@ class Conversation:
 
 
     @property
-    async def aimessages(self):
+    def aimessages(self):
         return self._aimessages
 
     @property
-    async def usermessages(self):
+    def usermessages(self):
         return self._usermessages
 
     @property
-    async def alive(self):
+    def alive(self):
         return self._alive
 
 

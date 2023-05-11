@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: roastedbyai
-Version: 0.1.0
+Version: 0.1.1
 Summary: A package to get roasted by AI (using Selenium).
 Home-page: https://github.com/jvherck/roastedbyai
 Author: jvherck
@@ -44,7 +44,7 @@ https://roastedby.ai as the website doesn't have an official API.
 
 
 ## How to install
-Run `pip install roastbyai`
+Run `pip install roastbyai` \
 If that doesn't work, try `py -m pip install roastedbyai`
 
 
