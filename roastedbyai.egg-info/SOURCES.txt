@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+roastedbyai/__init__.py
+roastedbyai/errors.py
+roastedbyai/roasted.py
+roastedbyai.egg-info/PKG-INFO
+roastedbyai.egg-info/SOURCES.txt
+roastedbyai.egg-info/dependency_links.txt
+roastedbyai.egg-info/requires.txt
+roastedbyai.egg-info/top_level.txt
