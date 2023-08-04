@@ -20,13 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
-import html
+import requests
+from typing import List
 
 from .errors import MessageLimitExceeded, CharacterLimitExceeded
 
@@ -37,131 +32,144 @@ __all__ = ("Conversation",)
 # Create a new object of this class for every simultaneous conversation you want to have
 class Conversation:
     """
-    An object of this class represents a conversation with the AI.
-    Make a new object if this conversation reached its message limit.
+    An instance of this class represents a conversation with the AI.
+    Create a new instance of this class if this conversation reached its message limit.
     """
     def __init__(self):
         """
-        Creates an object of this class that represents a conversation with the AI.
-        Make a new object if this conversation reached its message limit.
+        Creates an instance of this class that represents a conversation with the AI.
+        Create a new instance if this conversation reached its message limit.
         """
-        # Initialising variables, do NOT change these!
-        # Private variables start with _
-        self._aimessages: list = []
-        self._usermessages: list = []
-        self._alive: bool = True
-        self._selnumber: int = 1
-        self._selector: str = '/html/body/div/div/div[2]/div[2]/div[2]/div/div[{}]/div'
-        self._cooldown: int = 10
+        self.__history: list = [{
+            "role": "assistant",
+            "content": "Hello there. I'm here to roast you."
+        }]
+        self.__alive: bool = True
+        self.__url: str = "https://roastedby.ai/api/generate"
 
-        # Opening browser and waiting until initial message is shown
-        self._driver = webdriver.Chrome()
-        self._driver.get('https://roastedby.ai')
-        WebDriverWait(self._driver, self._cooldown).until(
-            EC.presence_of_element_located(
-                (By.XPATH, self._selector.format(self._selnumber))
-            )
-        )
+    def __str__(self):
+        """
+        :returns: the content of the last message in `Conversation.history`
+        """
+        return self.__history[len(self.__history)-1]["content"]
 
-        # Locating input box
-        WebDriverWait(self._driver, self._cooldown).until(
-            EC.presence_of_element_located(
-                (By.CLASS_NAME, 'inputBox')
-            )
-        )
-        self._input_box = self._driver.find_element(by=By.CLASS_NAME, value='inputBox')
-
+    def __len__(self):
+        """
+        :returns: the amount of messages in `Conversation.history`
+        """
+        return len(self.__history)
 
     @property
-    def aimessages(self):
-        return self._aimessages
+    def aimessages(self) -> list:
+        """
+        Get the list of the AI's messages.
+
+        :returns: list: the list of messages
+        """
+        aimsgs = []
+        for msg in self.__history:
+            if msg["role"] == "assistant":
+                aimsgs.append(msg["content"])
+        return aimsgs
 
     @property
-    def usermessages(self):
-        return self._usermessages
+    def usermessages(self) -> list:
+        """
+        Get the list of the user's messages.
+
+        :returns: list: the list of messages
+        """
+        aimsgs = []
+        for msg in self.__history:
+            if msg["role"] == "user":
+                aimsgs.append(msg["content"])
+        return aimsgs
 
     @property
-    def alive(self):
-        return self._alive
+    def history(self) -> List[dict]:
+        """
+        Return the full history of this Conversation.
 
+        [
+        {"role": "assistant","content": "..."},
+        {"role": "user","content": "..."},
+        ...
+        ]
 
-    def _scrollToBottom(self):
-        self._driver.execute_script(
-            """
-            var elem = document.getElementsByClassName("chatMessages")[0];
-            elem.scrollTo(0, elem.scrollHeight);
-            """
-        )
+        :returns: list[dict]: the history list which contains dicts
+        """
+        return self.__history
 
+    @property
+    def alive(self) -> bool:
+        """
+        Whether you are still able to participate in this Conversation.
+        If this returns False, you can no longer use the `Conversation.send` function, but you can still access the message history.
+
+        :returns: bool: True if you can still send messages, else False
+        """
+        return self.__alive
 
     def send(self, message: str) -> str:
         """
         Sends the user input to the AI and the AI returns a roast as output.
 
-        :param message: the user input for the AI
+        :param message: str: the user input for the AI
         :type message: str
         :return: returns a string containing the AI's (roast) response to the user's input
         """
-        # Checking if message limit isn't reached yet
-        if self.alive is False:
-            raise MessageLimitExceeded('Message limit is exceeded, create a new object of this class to continue again.')
+        if self.__alive is False:
+            raise MessageLimitExceeded('Message limit exceeded, you can not send any more messages to this Conversation.')
 
-        # Checking for max character length
         if len(message) > 250:
-            raise CharacterLimitExceeded('Character limit is exceeded: maximum allowed number of characters is 250!')
+            raise CharacterLimitExceeded('Character limit exceeded: maximum allowed number of characters is 250!')
 
-        # Removing all unsupported characters
+        # Removing non-allowed characters
         for char in message:
             if ord(char) > 65535:
                 message = message.replace(char, '￿')
 
-        # Insert user input to input box
-        self._input_box.send_keys(message)
-        self._input_box.send_keys(Keys.RETURN)
+        _json_body = {
+            "userMessage": {
+                "role": "user",
+                "content": message
+            },
+            "history": self.__history,
+            "style": "default"
+        }
+        _headers = {
+            "Accept": "*/*",
+            "Accept-Encoding": "br",
+            "Accept-Language": "en-GB,en;q=0.9",
+            "Content-Length": str(len(str(_json_body))),
+            "Content-Type": "application/json",
+            "Origin": "https://roastedby.ai",
+            "Referer": "https://roastedby.ai/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        }
 
-        # Increase selector number by 2 to get the next AI message
-        # (every odd number is an AI's message, note that the initial value is 1)
-        self._selnumber += 2
+        result = requests.post(self.__url, json=_json_body, headers=_headers).json()["content"]
 
-        # Wait for the AI to respond (as soon as the 3 loading symbols disappear, the AI's response is shown)
-        ie = (NoSuchElementException, StaleElementReferenceException,)
-        WebDriverWait(self._driver, self._cooldown, ignored_exceptions=ie).until_not(
-            EC.text_to_be_present_in_element_attribute(
-                (By.XPATH, self._selector.format(self._selnumber)),
-                'innerHTML',
-                # Note that the following string is ONE string on two separate lines! (readability)
-                '<span class="circle animate-loader"></span><span class="circle animate-loader animation-delay-200">'
-                '</span><span class="circle animate-loader animation-delay-400"></span>'
-            )
-        )
+        self.__history.append({
+            "role": "user",
+            "content": message
+        })
+        self.__history.append({
+            "role": "assistant",
+            "content": result
+        })
 
-        # Scroll to bottom of chat window
-        self._scrollToBottom()
-
-        # Get AI's response
-        result = self._driver.find_element(by=By.XPATH, value=self._selector.format(self._selnumber)) \
-            .get_attribute('innerHTML')
-        result = html.unescape(result)
-
-        # Storing messages
-        self._aimessages.append(result)
-        self._usermessages.append(message)
-
-        # Checking if message limit is reached
         if result == 'Too many messages. Thanks for playing!':
-            self._alive = False
-            self.quit()
+            self.kill()
         elif result == 'Can you calm down?! You exceeded the rate limit. Please try again later.':
-            self._alive = False
-            self.quit()
+            self.kill()
 
         return result
 
-
-    def quit(self) -> None:
+    def kill(self) -> None:
         """
         Quit and close the conversation.
-        User and AI messages are still available using `.usermessages` and `.aimessages`
+        User and AI messages are still available using `Conversation.usermessages` and `Conversation.aimessages`.
+        The full conversation is available in `Conversation.history`.
         """
-        self._alive = False
-        self._driver.quit()
+        self.__alive = False

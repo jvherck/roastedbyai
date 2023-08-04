@@ -24,7 +24,6 @@ class MessageLimitExceeded(Exception):
     def __init__(self, _):
         super().__init__(_)
 
-
 class CharacterLimitExceeded(Exception):
     def __init__(self, _):
         super().__init__(_)
