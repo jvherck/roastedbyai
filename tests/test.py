@@ -1,6 +1,6 @@
-from roastedbyai import Conversation
+from roastedbyai import Conversation, Style
 
-convo = Conversation()
+convo = Conversation(Style.valley_girl)
 
 user_input = input("Start by roasting the AI:\n>>> ")
 response1 = convo.send(user_input)
@@ -14,6 +14,6 @@ convo.kill()
 # This step isn't necessary, the moment you don't use the `convo` object
 # anymore, python will automatically handle it
 
-print("\n---\n")
+print("\n---\nHistory:\n")
 for msg in convo.history:
     print(msg["role"], msg["content"], sep=": ")

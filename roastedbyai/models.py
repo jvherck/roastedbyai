@@ -20,12 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-__all__ = ("MessageLimitExceeded", "CharacterLimitExceeded",)
+__all__ = ("Style",)
 
-class MessageLimitExceeded(Exception):
-    def __init__(self, _):
-        super().__init__(_)
-
-class CharacterLimitExceeded(Exception):
-    def __init__(self, _):
-        super().__init__(_)
+class Style:
+    """
+    An auxiliary class to make it easier to view and select a style for a Conversation.
+    """
+    styles = all = ["default", "crypto_bro", "new_york", "south_london", "surfer_dude", "valley_girl", "adult"]
+    default = "default"
+    crypto_bro = "crypto_bro"
+    new_york = "new_york"
+    south_london = "south_london"
+    surfer_dude = "surfer_dude"
+    valley_girl = "valley_girl"
+    adult = "adult"

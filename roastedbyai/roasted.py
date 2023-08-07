@@ -24,6 +24,7 @@ import requests
 from typing import List
 
 from .errors import MessageLimitExceeded, CharacterLimitExceeded
+from .models import Style
 
 
 __all__ = ("Conversation",)
@@ -35,16 +36,20 @@ class Conversation:
     An instance of this class represents a conversation with the AI.
     Create a new instance of this class if this conversation reached its message limit.
     """
-    def __init__(self):
+    def __init__(self, style: str = Style.default):
         """
         Creates an instance of this class that represents a conversation with the AI.
         Create a new instance if this conversation reached its message limit.
+
+        :param style: The talking style of the AI. Use auxiliary class roastedbyai.models.Style
+        :type style: str
         """
         self.__history: list = [{
             "role": "assistant",
             "content": "Hello there. I'm here to roast you."
         }]
         self.__alive: bool = True
+        self.__style: str = style
         self.__url: str = "https://roastedby.ai/api/generate"
 
     def __str__(self):
@@ -110,11 +115,20 @@ class Conversation:
         """
         return self.__alive
 
+    @property
+    def style(self) -> str:
+        """
+        Returns the talking style of this Conversation.
+
+        :returns: roastedbyai.models.Style: the style
+        """
+        return self.__style
+
     def send(self, message: str) -> str:
         """
         Sends the user input to the AI and the AI returns a roast as output.
 
-        :param message: str: the user input for the AI
+        :param message: str: the user input for the AI (max character limit of 250)
         :type message: str
         :return: returns a string containing the AI's (roast) response to the user's input
         """
@@ -135,7 +149,7 @@ class Conversation:
                 "content": message
             },
             "history": self.__history,
-            "style": "default"
+            "style": str(self.__style)
         }
         _headers = {
             "Accept": "*/*",
