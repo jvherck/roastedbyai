@@ -1,29 +1,10 @@
-# MIT License
-#
-# Copyright (c) 2023 jvherck (on GitHub)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (jvherck on GitHub)
 
 import requests
 from typing import List
 
 from .errors import MessageLimitExceeded, CharacterLimitExceeded
+from .models import Style
 
 
 __all__ = ("Conversation",)
@@ -35,16 +16,20 @@ class Conversation:
     An instance of this class represents a conversation with the AI.
     Create a new instance of this class if this conversation reached its message limit.
     """
-    def __init__(self):
+    def __init__(self, style: str = Style.default):
         """
         Creates an instance of this class that represents a conversation with the AI.
         Create a new instance if this conversation reached its message limit.
+
+        :param style: The talking style of the AI. Use auxiliary class roastedbyai.models.Style
+        :type style: str
         """
         self.__history: list = [{
             "role": "assistant",
             "content": "Hello there. I'm here to roast you."
         }]
         self.__alive: bool = True
+        self.__style: str = style
         self.__url: str = "https://roastedby.ai/api/generate"
 
     def __str__(self):
@@ -110,11 +95,20 @@ class Conversation:
         """
         return self.__alive
 
+    @property
+    def style(self) -> str:
+        """
+        Returns the talking style of this Conversation.
+
+        :returns: roastedbyai.models.Style: the style
+        """
+        return self.__style
+
     def send(self, message: str) -> str:
         """
         Sends the user input to the AI and the AI returns a roast as output.
 
-        :param message: str: the user input for the AI
+        :param message: str: the user input for the AI (max character limit of 250)
         :type message: str
         :return: returns a string containing the AI's (roast) response to the user's input
         """
@@ -135,7 +129,7 @@ class Conversation:
                 "content": message
             },
             "history": self.__history,
-            "style": "default"
+            "style": str(self.__style)
         }
         _headers = {
             "Accept": "*/*",

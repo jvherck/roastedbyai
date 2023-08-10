@@ -1,4 +1,6 @@
 # RoastedByAI
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
 This is an *unofficial* Python package for https://roastedby.ai to roast and get roasted by AI.
 
 
@@ -63,3 +65,11 @@ Feel free to open Pull Requests with new features, improvements or fixes.
 
 ## Disclaimer/Credits
 I am not affiliated with https://roastedby.ai, all credits for the AI go to them.
+
+
+---
+
+
+## License
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+

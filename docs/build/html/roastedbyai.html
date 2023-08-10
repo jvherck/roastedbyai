@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>roastedbyai &mdash; RoastedByAI Python Package 1.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to RoastedByAI Python Package’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RoastedByAI Python Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">roastedbyai</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-roastedbyai.errors">roastedbyai.errors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roastedbyai.errors.CharacterLimitExceeded"><code class="docutils literal notranslate"><span class="pre">CharacterLimitExceeded</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roastedbyai.errors.MessageLimitExceeded"><code class="docutils literal notranslate"><span class="pre">MessageLimitExceeded</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-roastedbyai.models">roastedbyai.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roastedbyai.models.Style"><code class="docutils literal notranslate"><span class="pre">Style</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.adult"><code class="docutils literal notranslate"><span class="pre">Style.adult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.all"><code class="docutils literal notranslate"><span class="pre">Style.all</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.crypto_bro"><code class="docutils literal notranslate"><span class="pre">Style.crypto_bro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.default"><code class="docutils literal notranslate"><span class="pre">Style.default</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.new_york"><code class="docutils literal notranslate"><span class="pre">Style.new_york</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.south_london"><code class="docutils literal notranslate"><span class="pre">Style.south_london</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.styles"><code class="docutils literal notranslate"><span class="pre">Style.styles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.surfer_dude"><code class="docutils literal notranslate"><span class="pre">Style.surfer_dude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.models.Style.valley_girl"><code class="docutils literal notranslate"><span class="pre">Style.valley_girl</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-roastedbyai.roasted">roastedbyai.roasted module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roastedbyai.roasted.Conversation"><code class="docutils literal notranslate"><span class="pre">Conversation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.aimessages"><code class="docutils literal notranslate"><span class="pre">Conversation.aimessages</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.alive"><code class="docutils literal notranslate"><span class="pre">Conversation.alive</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.history"><code class="docutils literal notranslate"><span class="pre">Conversation.history</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.kill"><code class="docutils literal notranslate"><span class="pre">Conversation.kill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.send"><code class="docutils literal notranslate"><span class="pre">Conversation.send()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.style"><code class="docutils literal notranslate"><span class="pre">Conversation.style</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roastedbyai.roasted.Conversation.usermessages"><code class="docutils literal notranslate"><span class="pre">Conversation.usermessages</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-roastedbyai">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RoastedByAI Python Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">roastedbyai</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/roastedbyai.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="roastedbyai">
+<h1>roastedbyai<a class="headerlink" href="#roastedbyai" title="Permalink to this heading"></a></h1>
+<section id="module-roastedbyai.errors">
+<span id="roastedbyai-errors-module"></span><h2>roastedbyai.errors module<a class="headerlink" href="#module-roastedbyai.errors" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="roastedbyai.errors.CharacterLimitExceeded">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">roastedbyai.errors.</span></span><span class="sig-name descname"><span class="pre">CharacterLimitExceeded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roastedbyai/errors.html#CharacterLimitExceeded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.errors.CharacterLimitExceeded" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="roastedbyai.errors.MessageLimitExceeded">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">roastedbyai.errors.</span></span><span class="sig-name descname"><span class="pre">MessageLimitExceeded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roastedbyai/errors.html#MessageLimitExceeded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.errors.MessageLimitExceeded" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-roastedbyai.models">
+<span id="roastedbyai-models-module"></span><h2>roastedbyai.models module<a class="headerlink" href="#module-roastedbyai.models" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="roastedbyai.models.Style">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">roastedbyai.models.</span></span><span class="sig-name descname"><span class="pre">Style</span></span><a class="reference internal" href="_modules/roastedbyai/models.html#Style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.models.Style" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An auxiliary class to make it easier to view and select a style for a Conversation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.adult">
+<span class="sig-name descname"><span class="pre">adult</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'adult'</span></em><a class="headerlink" href="#roastedbyai.models.Style.adult" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.all">
+<span class="sig-name descname"><span class="pre">all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['default',</span> <span class="pre">'crypto_bro',</span> <span class="pre">'new_york',</span> <span class="pre">'south_london',</span> <span class="pre">'surfer_dude',</span> <span class="pre">'valley_girl',</span> <span class="pre">'adult']</span></em><a class="headerlink" href="#roastedbyai.models.Style.all" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.crypto_bro">
+<span class="sig-name descname"><span class="pre">crypto_bro</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'crypto_bro'</span></em><a class="headerlink" href="#roastedbyai.models.Style.crypto_bro" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.default">
+<span class="sig-name descname"><span class="pre">default</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#roastedbyai.models.Style.default" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.new_york">
+<span class="sig-name descname"><span class="pre">new_york</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'new_york'</span></em><a class="headerlink" href="#roastedbyai.models.Style.new_york" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.south_london">
+<span class="sig-name descname"><span class="pre">south_london</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'south_london'</span></em><a class="headerlink" href="#roastedbyai.models.Style.south_london" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.styles">
+<span class="sig-name descname"><span class="pre">styles</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['default',</span> <span class="pre">'crypto_bro',</span> <span class="pre">'new_york',</span> <span class="pre">'south_london',</span> <span class="pre">'surfer_dude',</span> <span class="pre">'valley_girl',</span> <span class="pre">'adult']</span></em><a class="headerlink" href="#roastedbyai.models.Style.styles" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.surfer_dude">
+<span class="sig-name descname"><span class="pre">surfer_dude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'surfer_dude'</span></em><a class="headerlink" href="#roastedbyai.models.Style.surfer_dude" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="roastedbyai.models.Style.valley_girl">
+<span class="sig-name descname"><span class="pre">valley_girl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'valley_girl'</span></em><a class="headerlink" href="#roastedbyai.models.Style.valley_girl" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-roastedbyai.roasted">
+<span id="roastedbyai-roasted-module"></span><h2>roastedbyai.roasted module<a class="headerlink" href="#module-roastedbyai.roasted" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">roastedbyai.roasted.</span></span><span class="sig-name descname"><span class="pre">Conversation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roastedbyai/roasted.html#Conversation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.roasted.Conversation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An instance of this class represents a conversation with the AI.
+Create a new instance of this class if this conversation reached its message limit.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.aimessages">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aimessages</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#roastedbyai.roasted.Conversation.aimessages" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of the AI’s messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list: the list of messages</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.alive">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alive</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#roastedbyai.roasted.Conversation.alive" title="Permalink to this definition"></a></dt>
+<dd><p>Whether you are still able to participate in this Conversation.
+If this returns False, you can no longer use the <cite>Conversation.send</cite> function, but you can still access the message history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool: True if you can still send messages, else False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.history">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#roastedbyai.roasted.Conversation.history" title="Permalink to this definition"></a></dt>
+<dd><p>Return the full history of this Conversation.</p>
+<p>[
+{“role”: “assistant”,”content”: “…”},
+{“role”: “user”,”content”: “…”},
+…
+]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[dict]: the history list which contains dicts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/roastedbyai/roasted.html#Conversation.kill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.roasted.Conversation.kill" title="Permalink to this definition"></a></dt>
+<dd><p>Quit and close the conversation.
+User and AI messages are still available using <cite>Conversation.usermessages</cite> and <cite>Conversation.aimessages</cite>.
+The full conversation is available in <cite>Conversation.history</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/roastedbyai/roasted.html#Conversation.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#roastedbyai.roasted.Conversation.send" title="Permalink to this definition"></a></dt>
+<dd><p>Sends the user input to the AI and the AI returns a roast as output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – str: the user input for the AI (max character limit of 250)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>returns a string containing the AI’s (roast) response to the user’s input</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.style">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#roastedbyai.roasted.Conversation.style" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the talking style of this Conversation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>roastedbyai.models.Style: the style</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="roastedbyai.roasted.Conversation.usermessages">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usermessages</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#roastedbyai.roasted.Conversation.usermessages" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of the user’s messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list: the list of messages</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-roastedbyai">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-roastedbyai" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to RoastedByAI Python Package’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, jvherck (on GitHub).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
