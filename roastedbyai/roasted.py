@@ -24,6 +24,8 @@ class Conversation:
         :param style: The talking style of the AI. Use auxiliary class roastedbyai.models.Style
         :type style: str
         """
+        if style not in Style.all:
+            raise ValueError(f'"{self.style}" is not a valid style. Check the `Style` class to see possibilities.')
         self.__history: list = [{
             "role": "assistant",
             "content": "Hello there. I'm here to roast you."
@@ -117,6 +119,9 @@ class Conversation:
 
         if len(message) > 250:
             raise CharacterLimitExceeded('Character limit exceeded: maximum allowed number of characters is 250!')
+
+        if self.style not in Style.all:
+            raise ValueError(f'"{self.style}" is not a valid style. Check the `Style` class to see possibilities.')
 
         # Removing non-allowed characters
         for char in message:

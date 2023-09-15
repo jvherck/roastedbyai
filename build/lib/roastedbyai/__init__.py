@@ -4,4 +4,4 @@ from .roasted import *
 from .errors import *
 from .models import *
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
