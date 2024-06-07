@@ -2,6 +2,7 @@
 
 import requests
 from typing import List
+from importlib.util import find_spec
 
 from .errors import MessageLimitExceeded, CharacterLimitExceeded
 from .models import Style
@@ -24,6 +25,8 @@ class Conversation:
         :param style: The talking style of the AI. Use auxiliary class roastedbyai.models.Style
         :type style: str
         """
+        if find_spec("brotli") is None:
+            raise ModuleNotFoundError("Package `brotli` is required but not found. Please install brotli first.")
         if style not in Style.all:
             raise ValueError(f'"{self.style}" is not a valid style. Check the `Style` class to see possibilities.')
         self.__history: list = [{
@@ -114,6 +117,9 @@ class Conversation:
         :type message: str
         :return: returns a string containing the AI's (roast) response to the user's input
         """
+        if find_spec("brotli") is None:
+            raise ModuleNotFoundError("Package `brotli` is required but not found. Please install brotli first.")
+
         if self.__alive is False:
             raise MessageLimitExceeded('Message limit exceeded, you can not send any more messages to this Conversation.')
 
